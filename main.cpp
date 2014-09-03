@@ -4,16 +4,41 @@
 
 using namespace std;
 
+#ifndef NULL
+#define NULL 0
+#endif
+
 typedef unsigned int uint;
 
 int fibonacci(uint n);
 
-int fibonacci(uint n)
+typedef struct Args
 {
-	if (n == 0) return 0;
-	if (n < 3) return 1;
+	uint n;
+	uint result;
+} FiboArgs;
 
-	return fibonacci(n - 1) + fibonacci(n - 2);
+void *fibonacci(void *arg)
+{
+	FiboArgs *fiboargs = static_cast<FiboArgs*>(arg);
+	FiboArgs targ1, targ2;
+
+	uint n = fiboargs->n;
+
+	if (n == 0) fiboargs->result = 0;
+	else if (n < 3) fiboargs->result = 1;
+	else
+	{
+		//pthread_create();
+
+		// =====================
+		// Terminar!!!
+		// =====================
+
+		fiboargs->result = targ1.result + targ2.result;
+	}
+
+	return NULL;
 }
 
 int main(int argc, char **argv)
@@ -33,7 +58,7 @@ int main(int argc, char **argv)
 
 	uint fibo = (uint)n;
 
-	fibo = fibonacci(fibo);
+	//fibo = fibonacci(fibo);
 
 	cout << fibo << endl;
 
